@@ -9,7 +9,6 @@ const initialState = {
 
 // Create Action
 export const createUser = createAsyncThunk('createUser', async (data, { rejectWithValue }) => {
-   console.log("create user =====>>>  ", data)
    try {
       const response = await axios.post('https://68b47ed345c9016787708077.mockapi.io/crud', data, {
          headers: {
@@ -17,7 +16,6 @@ export const createUser = createAsyncThunk('createUser', async (data, { rejectWi
          },
       });
       const result = response.data
-      console.log("=====>>>> result", result);
       return result;
    } catch (err) {
       console.log(err)
@@ -33,9 +31,7 @@ export const showUsers = createAsyncThunk("showUsers", async (_, { rejectWithVal
    try {
 
       const response = await axios.get('https://68b47ed345c9016787708077.mockapi.io/crud');
-      console.log("response are you here => ", response)
       const result = response.data;
-      console.log("are you get all user list => ", result);
       return result;
 
    } catch (error) {
@@ -49,9 +45,7 @@ export const deleteUser = createAsyncThunk("deleteUser", async (id, { rejectWith
    try {
 
       const response = await axios.delete(`https://68b47ed345c9016787708077.mockapi.io/crud/${id}`);
-      console.log("Deleted users response => ", response)
       const result = response.data;
-      console.log("Deleted users here  => ", result);
       return result;
 
    } catch (error) {
@@ -62,7 +56,6 @@ export const deleteUser = createAsyncThunk("deleteUser", async (id, { rejectWith
 
 // Update Action
 export const updateUserRecord = createAsyncThunk("updateUserRecord", async (updatedUserData, { rejectWithValue }) => {
-   console.log("updatedUserData inside the slice = ", updatedUserData)
    try {
 
       const response = await axios.put(`https://68b47ed345c9016787708077.mockapi.io/crud/${updatedUserData.id}`, updatedUserData, {
@@ -70,9 +63,7 @@ export const updateUserRecord = createAsyncThunk("updateUserRecord", async (upda
             "Content-Type": "application/json",
          },
       });
-      console.log("updated users response => ", response)
       const result = response.data;
-      console.log("updated users here  => ", result);
       return result;
 
    } catch (error) {
@@ -118,7 +109,6 @@ export const userDetails = createSlice({
             state.loading = true;
          })
          .addCase(deleteUser.fulfilled, (state, action) => {
-            console.log("Delete User payload", action.payload)
             state.loading = false;
             const { id } = action.payload;
             if (id) {

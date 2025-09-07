@@ -32,7 +32,6 @@ const CreateUser = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Data:", user);
         dispatch(createUser(user));
 
        setUser(initialUserState);
@@ -40,7 +39,7 @@ const CreateUser = () => {
     };
 
     return (
-        <div className="py-8">
+        <div className="p-14">
             <div className="w-full bg-white">
                 <h1 className='w-full text-center text-3xl font-semibold px-4 pb-10'>User Registeration Form</h1>
                 <form className="w-full" onSubmit={handleSubmit}>

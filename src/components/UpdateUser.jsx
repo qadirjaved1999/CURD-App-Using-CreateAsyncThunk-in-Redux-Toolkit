@@ -9,26 +9,20 @@ const UpdateUser = () => {
     const navigate = useNavigate()
     const [updateUser, setUpdateUser] = useState(null);
     const { id } = useParams();
-    console.log("you get id from url using params=====>>>>> ", id);
 
     const { users, loading } = useSelector((state) => state.app);
-    console.log("get users from store === > ", users)
 
     useEffect(() => {
         if (id && users.length > 0) {
             const getSpecificUser = users.filter((user) => user.id == id);
-            console.log("updated user here =>>>>>>>", getSpecificUser);
             setUpdateUser(getSpecificUser[0])
         }
-        console.log("=========>>>>>>updated state of updateUser", updateUser)
     }, []);
 
     const updatedData = (e) => {
         const { name, value } = e.target;
-        console.log(name, ":", value);
         setUpdateUser({ ...updateUser, [e.target.name]: e.target.value })
     }
-    console.log("updateUser", updateUser)
 
     const handleUpdate = (e) => {
         e.preventDefault()
@@ -37,7 +31,7 @@ const UpdateUser = () => {
 
     }
     return (
-        <div className="py-8">
+        <div className="p-14">
             <div className="w-full bg-white">
                 <h1 className='w-full text-center text-3xl font-semibold px-4 pb-10'>Edit User Data</h1>
                 <form className="w-full" onSubmit={handleUpdate}>
